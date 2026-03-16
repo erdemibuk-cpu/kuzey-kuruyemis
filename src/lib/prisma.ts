@@ -1,33 +1,22 @@
 import { PrismaClient } from '@prisma/client'
+import { PrismaLibSql } from '@prisma/adapter-libsql'
 
-let prismaInstance: PrismaClient | null = null
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined
+}
 
-function getPrismaClient(): PrismaClient {
-  if (prismaInstance) return prismaInstance
-
+function createPrismaClient(): PrismaClient {
   const url = process.env.TURSO_DATABASE_URL
   const authToken = process.env.TURSO_AUTH_TOKEN
 
   if (url && authToken && url.startsWith('libsql://')) {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { PrismaLibSql } = require('@prisma/adapter-libsql')
-      const adapter = new PrismaLibSql({ url, authToken })
-      prismaInstance = new PrismaClient({ adapter } as any)
-    } catch (e) {
-      console.error('Turso adapter error, using default PrismaClient:', e)
-      prismaInstance = new PrismaClient()
-    }
-  } else {
-    prismaInstance = new PrismaClient()
+    const adapter = new PrismaLibSql({ url, authToken })
+    return new PrismaClient({ adapter } as any)
   }
 
-  return prismaInstance
+  return new PrismaClient()
 }
 
-export const prisma = new Proxy({} as PrismaClient, {
-  get(_target, prop) {
-    const client = getPrismaClient()
-    return (client as any)[prop]
-  },
-})
+export const prisma = globalForPrisma.prisma ?? createPrismaClient()
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
