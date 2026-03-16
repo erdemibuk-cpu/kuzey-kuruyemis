@@ -1,0 +1,13 @@
+node_modules
+.next
+.env
+.env.local
+prisma/dev.db
+prisma/dev.db-journal
+public/uploads/*
+!public/uploads/.gitkeep
+scripts/
+*.HEIC
+dükkan görseller/
+stok listesi.xls
+square-logo-surat-resim-21.png

@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  body {
+    @apply font-sans text-gray-800 bg-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors;
+  }
+  .btn-accent {
+    @apply bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-dark transition-colors;
+  }
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #0e532e;
+  border-radius: 4px;
+}
+
+/* Blog Content Styling */
+.prose img {
+  border-radius: 12px;
+  margin: 1.5rem 0;
+}
+.prose blockquote {
+  border-left: 4px solid #0e532e;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: #f0fdf4;
+  border-radius: 0 8px 8px 0;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.prose td, .prose th {
+  padding: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.prose .lead {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #374151;
+}
+
+/* Hide scrollbar for tabs */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .product-description h2 {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  .product-description h3 {
+    font-size: 1rem;
+  }
+  .product-description {
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+  .product-description .faq {
+    padding: 1rem 1.25rem;
+  }
+  .product-description .faq h4 {
+    font-size: 0.85rem;
+  }
+  .product-description .faq p {
+    font-size: 0.8rem;
+    padding-left: 1.75rem;
+  }
+  .btn-primary, .btn-accent, .btn-outline {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  .input-field {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Product image zoom */
+.product-image-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Product Description Styling */
+.product-description {
+  color: #374151;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.product-description h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0e532e;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #0e532e20;
+}
+
+.product-description h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-description h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.product-description p {
+  margin-bottom: 1rem;
+}
+
+.product-description ul,
+.product-description ol {
+  margin-bottom: 1rem;
+  padding-left: 1.25rem;
+}
+
+.product-description ul {
+  list-style: none;
+}
+
+.product-description ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-description ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 8px;
+  height: 8px;
+  background: #ff751d;
+  border-radius: 50%;
+}
+
+.product-description ol li {
+  margin-bottom: 0.5rem;
+}
+
+.product-description strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.product-description a {
+  color: #0e532e;
+  text-decoration: underline;
+}
+
+/* FAQ Section */
+.product-description .faq {
+  margin-top: 2.5rem;
+  background: linear-gradient(135deg, #f0fdf4, #f8fafc);
+  border: 1px solid #dcfce7;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+}
+
+.product-description .faq h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0e532e;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #0e532e20;
+}
+
+.product-description .faq h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0e532e;
+  margin-top: 1.25rem;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.product-description .faq h4::before {
+  content: '?';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #0e532e;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.product-description .faq p {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+  padding-left: 2rem;
+}
